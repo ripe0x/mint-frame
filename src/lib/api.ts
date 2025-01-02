@@ -164,9 +164,7 @@ type RequestParams = Record<
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RequestData = any;
 
-type EndpointName =
-  | "getFeaturedMint"
-  | "getFeaturedMintTransaction";
+type EndpointName = "getFeaturedMint" | "getFeaturedMintTransaction";
 
 type Fetcher = typeof fetch;
 
@@ -659,71 +657,107 @@ export interface ApiUser {
 }
 
 export type ApiUserMinimal = {
-  fid: ApiFid,
-  username?: ApiFname,
-  displayName: ApiDisplayName,
-  pfp?: ApiPfp,
-}
+  fid: ApiFid;
+  username?: ApiFname;
+  displayName: ApiDisplayName;
+  pfp?: ApiPfp;
+};
 
 export type ApiFeaturedMint = {
-  name: string,
-  imageUrl: ApiUri,
-  description?: string,
-  creator: ApiUserMinimal,
-  chain: ApiChain,
-  collection: ApiEthereumAddress,
-  contract: ApiEthereumAddress,
-  tokenId?: string,
-  isMinting: boolean,
-  priceEth: string,
-  priceUsd: number,
-  startsAt?: ApiTimestampMillis,
-  endsAt?: ApiTimestampMillis,
-}
+  name: string;
+  imageUrl: ApiUri;
+  description?: string;
+  creator: ApiUserMinimal;
+  chain: ApiChain;
+  collection: ApiEthereumAddress;
+  contract: ApiEthereumAddress;
+  tokenId?: string;
+  isMinting: boolean;
+  priceEth: string;
+  priceUsd: number;
+  startsAt?: ApiTimestampMillis;
+  endsAt?: ApiTimestampMillis;
+};
 
 export type ApiFeaturedMintData = {
-  name: string,
-  imageUrl: ApiUri,
-  creatorFid: ApiFid,
-  collection: ApiEthereumAddress,
-  contract: ApiEthereumAddress,
-  priceEth: string,
-  description?: string,
-  tokenId?: string,
-  startsAt?: ApiTimestampMillis,
-  endsAt?: ApiTimestampMillis,
-}
+  name: string;
+  imageUrl: ApiUri;
+  creatorFid: ApiFid;
+  collection: ApiEthereumAddress;
+  contract: ApiEthereumAddress;
+  priceEth: string;
+  description?: string;
+  tokenId?: string;
+  startsAt?: ApiTimestampMillis;
+  endsAt?: ApiTimestampMillis;
+};
 
 export type ApiFeaturedMintTransaction = {
-  chain: ApiChain,
-  to: ApiEthereumAddress,
-  data: ApiHexString,
-  value: ApiHexString,
-}
+  chain: ApiChain;
+  to: ApiEthereumAddress;
+  data: ApiHexString;
+  value: ApiHexString;
+};
 
 export type ApiGetFeaturedMintQueryParamsCamelCase = {
-  collection?: string,
-}
-export type ApiGetFeaturedMintQueryParams = ApiGetFeaturedMintQueryParamsCamelCase;
+  collection?: string;
+};
+export type ApiGetFeaturedMintQueryParams =
+  ApiGetFeaturedMintQueryParamsCamelCase;
 
 export type ApiGetFeaturedMint200Response = {
   result: {
-    mint: ApiFeaturedMint,
-  },
-}
+    mint: ApiFeaturedMint;
+  };
+};
 
 export type ApiGetFeaturedMintTransactionQueryParamsCamelCase = {
-  address: ApiEthereumAddress,
-  collection?: ApiEthereumAddress,
-}
-export type ApiGetFeaturedMintTransactionQueryParams = ApiGetFeaturedMintTransactionQueryParamsCamelCase;
+  address: ApiEthereumAddress;
+  collection?: ApiEthereumAddress;
+};
+export type ApiGetFeaturedMintTransactionQueryParams =
+  ApiGetFeaturedMintTransactionQueryParamsCamelCase;
 
 export type ApiGetFeaturedMintTransaction200Response = {
   result: {
-    tx: ApiFeaturedMintTransaction,
-  },
-}
+    tx: ApiFeaturedMintTransaction;
+  };
+};
 
+// class WarpcastApiClient extends AbstractWarpcastApiClient {
+//   /**
+//    * Get featured mint information
+//    */
+//   getFeaturedMint(
+//     params?: ApiGetFeaturedMintQueryParams,
+//     { headers, timeout }: { headers?: RequestHeaders; timeout?: number } = {}
+//   ) {
+//     return this.get<ApiGetFeaturedMint200Response>("/v1/featured-mint", {
+//       headers,
+//       timeout,
+//       endpointName: "getFeaturedMint",
+//       params,
+//     });
+//   }
+
+//   /**
+//    * Get featured mint transaction data
+//    */
+//   getFeaturedMintTransaction(
+//     params: ApiGetFeaturedMintTransactionQueryParams,
+//     { headers, timeout }: { headers?: RequestHeaders; timeout?: number } = {}
+//   ) {
+//     return this.get<ApiGetFeaturedMintTransaction200Response>(
+//       "/v1/featured-mint-transaction",
+//       {
+//         headers,
+//         timeout,
+//         endpointName: "getFeaturedMintTransaction",
+//         params,
+//       }
+//     );
+//   }
+// }
 
 class WarpcastApiClient extends AbstractWarpcastApiClient {
   /**
@@ -733,15 +767,17 @@ class WarpcastApiClient extends AbstractWarpcastApiClient {
     params?: ApiGetFeaturedMintQueryParams,
     { headers, timeout }: { headers?: RequestHeaders; timeout?: number } = {}
   ) {
-    return this.get<ApiGetFeaturedMint200Response>(
-      "/v1/featured-mint",
-      {
-        headers,
-        timeout,
-        endpointName: "getFeaturedMint",
-        params,
-      }
-    );
+    const endpoint = "/api/mint-info";
+    // process.env.NODE_ENV === "production"
+    //   ? "/v1/featured-mint"
+    // : "/api/mint-info";
+
+    return this.get<ApiGetFeaturedMint200Response>(endpoint, {
+      headers,
+      timeout,
+      endpointName: "getFeaturedMint",
+      params,
+    });
   }
 
   /**
@@ -751,18 +787,37 @@ class WarpcastApiClient extends AbstractWarpcastApiClient {
     params: ApiGetFeaturedMintTransactionQueryParams,
     { headers, timeout }: { headers?: RequestHeaders; timeout?: number } = {}
   ) {
-    return this.get<ApiGetFeaturedMintTransaction200Response>(
-      "/v1/featured-mint-transaction",
-      {
-        headers,
-        timeout,
-        endpointName: "getFeaturedMintTransaction",
-        params,
-      }
-    );
+    // Use a custom endpoint for local development
+    const endpoint = "/api/transaction-calldata";
+    // process.env.NODE_ENV === "production"
+    //   ? "/v1/featured-mint-transaction"
+    //   : "/api/transaction-calldata";
+
+    return this.get<ApiGetFeaturedMintTransaction200Response>(endpoint, {
+      headers,
+      timeout,
+      endpointName: "getFeaturedMintTransaction",
+      params,
+    });
   }
 }
 
 const api = new WarpcastApiClient();
+
+export const getMintInformation = async () => {
+  const response = await fetch("/api/mint-info");
+  if (!response.ok) {
+    throw new Error("Failed to fetch mint information");
+  }
+  return response.json();
+};
+
+export const getTransactionCalldata = async (address: string) => {
+  const response = await fetch(`/api/transaction-calldata?address=${address}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch transaction calldata");
+  }
+  return response.json();
+};
 
 export { api };

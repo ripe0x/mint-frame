@@ -7,12 +7,14 @@ import { Providers } from "@/providers/Providers";
 const frame = {
   version: "next",
   imageUrl: `https://wc-featured-mint.vercel.app/api/og`,
+  // imageUrl: `https://87c9-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app/api/og`,
   button: {
-    title: "Collect",
+    title: "Mint",
     action: {
       type: "launch_frame",
       name: "Mints",
-      url: "https://mint.warpcast.com/",
+      // url: "https://mint.warpcast.com/",
+      url: "https://87c9-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app",
       iconImageUrl: "https://mint.warpcast.com/app.png",
       splashImageUrl: "https://mint.warpcast.com/splash.png",
       splashBackgroundColor: "#ffffff",
@@ -23,9 +25,9 @@ const frame = {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL("https://mint.warpcast.com/"),
-    title: "Mints",
+    title: "Higher Self Mint",
     openGraph: {
-      title: "Warpcast",
+      title: "Higher Self",
       description: "Mints",
       images: "https://wc-featured-mint.vercel.app/api/og",
     },

@@ -7,11 +7,11 @@
   "frame": {
     "version": "1",
     "name": "Mints",
-    "imageUrl": "https://wc-featured-mint.vercel.app/api/og",
+    "imageUrl": "https://87c9-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app/api/og",
     "buttonTitle": "Collect",
     "iconUrl": "https://mint.warpcast.com/app.png",
     "splashImageUrl": "https://mint.warpcast.com/splash.png",
     "splashBackgroundColor": "#ffffff",
-    "homeUrl": "https://mint.warpcast.com/"
+    "homeUrl": "https://87c9-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app"
   }
 }
