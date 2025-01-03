@@ -61,7 +61,7 @@ export function ArtworkInfo({ name, creator, description }: ArtworkInfoProps) {
         {description}.{" "}
         <span
           className="text-sm text-action-foreground hover:underline cursor-pointer"
-          onClick={handleUsernameClick}
+          onClick={handleLinkClick}
         >
           Learn more
         </span>
