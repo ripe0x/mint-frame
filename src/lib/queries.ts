@@ -23,7 +23,7 @@ const useFeaturedMint = () => {
   const data = `{
   "name": "Higher Self",
   "imageUrl": "${ROOT_URL}/fc-frame-image.png",
-  "description": "An optimistic onchain identity system built on base",
+  "description": "An optimistic onchain identity system built on base. Each Higher Self image is algorithmically generated from the holder’s address.",
   "creator": {
     "id": "2266",
     "username": "ripe",

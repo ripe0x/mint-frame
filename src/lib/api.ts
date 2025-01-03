@@ -807,7 +807,8 @@ class WarpcastApiClient extends AbstractWarpcastApiClient {
       result: {
         mint: {
           name: "Higher Self",
-          description: "An optimistic onchain identity system built on base",
+          description:
+            "An optimistic onchain identity system built on base. Each Higher Self image is algorithmically generated from the holder’s address.",
           image: "/fc-frame-image.png",
           // "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/base-mainnet/53ded15d1d60df2cc0f3234742ee2538",
           network: "base",
