@@ -14,7 +14,7 @@ import { useFeaturedMintTransaction } from "@/lib/queries";
 
 interface CollectButtonProps {
   timestamp?: number;
-  price: number;
+  // price: number;
   onCollect: () => void;
   onError: (error: string | undefined) => void;
 }
