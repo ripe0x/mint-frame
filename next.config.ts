@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "d3fd-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app", // Add this line
+        hostname: "7425-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app", // Add this line
         pathname: "/**", // Match all paths under this hostname
       },
     ],
