@@ -2,11 +2,13 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 
+import { ROOT_URL } from "@/constants";
 import { Providers } from "@/providers/Providers";
 
 const frame = {
   version: "next",
-  imageUrl: `https://wc-featured-mint.vercel.app/api/og`,
+  // imageUrl: `${ROOT_URL}/api/og`,
+  imageUrl: `${ROOT_URL}/fc-frame-image-og.png`,
   // imageUrl: `https://87c9-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app/api/og`,
   button: {
     title: "Mint",
@@ -14,7 +16,7 @@ const frame = {
       type: "launch_frame",
       name: "Mints",
       // url: "https://mint.warpcast.com/",
-      url: "https://87c9-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app",
+      url: ROOT_URL,
       iconImageUrl: "https://mint.warpcast.com/app.png",
       splashImageUrl: "https://mint.warpcast.com/splash.png",
       splashBackgroundColor: "#ffffff",
@@ -29,7 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "Higher Self",
       description: "Mints",
-      images: "https://wc-featured-mint.vercel.app/api/og",
+      // images: `${ROOT_URL}/api/og`,
+      images: `${ROOT_URL}/fc-frame-image-og.png`,
     },
     other: {
       "fc:frame": JSON.stringify(frame),

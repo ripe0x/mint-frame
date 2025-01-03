@@ -15,7 +15,9 @@ import { useFrameSplash } from "@/providers/FrameSplashProvider";
 export default function Home() {
   const { dismiss } = useFrameSplash();
   const { data } = useFeaturedMint();
-  const { mint } = data.result;
+
+  // const { mint } = data.result;
+  const mint = data;
 
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [error, setError] = React.useState<string>();
@@ -36,7 +38,7 @@ export default function Home() {
         />
         <CollectButton
           timestamp={mint.endsAt}
-          price={mint.priceUsd}
+          // price={mint.priceUsd}
           onCollect={() => setShowSuccess(true)}
           onError={setError}
         />

@@ -1,3 +1,5 @@
+import { ROOT_URL } from "@/constants";
+
 function mergeIntoDefaultOptions<T>({
   defaults,
   options,
@@ -242,7 +244,8 @@ export interface FetchResponse<T> {
   readonly status: number;
 }
 
-const defaultBaseUrl = "https://client.warpcast.com";
+// const defaultBaseUrl = "https://client.warpcast.com";
+const defaultBaseUrl = ROOT_URL;
 const defaultReadTimeout = 20 * 1000;
 const defaultMutateTimeout = 20 * 1000;
 
@@ -767,17 +770,33 @@ class WarpcastApiClient extends AbstractWarpcastApiClient {
     params?: ApiGetFeaturedMintQueryParams,
     { headers, timeout }: { headers?: RequestHeaders; timeout?: number } = {}
   ) {
-    const endpoint = "/api/mint-info";
+    // @ts-expect-error
+    console.log("getFeaturedMint", params, headers, timeout);
+
+    // const endpoint = `/api/mint-info`;
     // process.env.NODE_ENV === "production"
     //   ? "/v1/featured-mint"
     // : "/api/mint-info";
 
-    return this.get<ApiGetFeaturedMint200Response>(endpoint, {
-      headers,
-      timeout,
-      endpointName: "getFeaturedMint",
-      params,
-    });
+    // return this.get<ApiGetFeaturedMint200Response>(endpoint, {
+    //   headers,
+    //   timeout,
+    //   endpointName: "getFeaturedMint",
+    //   params,
+    // });
+
+    const response = {
+      name: "Higher Self",
+      description: "An optimistic onchain identity system built on base",
+      image: "/fc-frame-image.png",
+      // "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/base-mainnet/53ded15d1d60df2cc0f3234742ee2538",
+      network: "base",
+      contractAddress: "0xc49Bae5D82644f607eaC97bE42d5188a51cb0CAF",
+      mintPrice: "0.0025",
+      maxSupply: 100000,
+      availableSupply: 100000,
+    };
+    return Promise.resolve({ data: response, status: 200 });
   }
 
   /**
@@ -788,17 +807,20 @@ class WarpcastApiClient extends AbstractWarpcastApiClient {
     { headers, timeout }: { headers?: RequestHeaders; timeout?: number } = {}
   ) {
     // Use a custom endpoint for local development
-    const endpoint = "/api/transaction-calldata";
+    const endpoint = `/api/transaction-calldata`;
     // process.env.NODE_ENV === "production"
     //   ? "/v1/featured-mint-transaction"
     //   : "/api/transaction-calldata";
 
-    return this.get<ApiGetFeaturedMintTransaction200Response>(endpoint, {
+    const tx = this.get<ApiGetFeaturedMintTransaction200Response>(endpoint, {
       headers,
       timeout,
       endpointName: "getFeaturedMintTransaction",
       params,
     });
+
+    console.log("tx", tx);
+    return tx;
   }
 }
 

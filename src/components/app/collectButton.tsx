@@ -19,16 +19,12 @@ interface CollectButtonProps {
   onError: (error: string | undefined) => void;
 }
 
-const formatUsdPrice = (priceInCents: number) => {
-  const dollars = (priceInCents / 100).toFixed(2);
-  return `$${dollars}`;
-};
+// const formatUsdPrice = (priceInCents: number) => {
+//   const dollars = (priceInCents / 100).toFixed(2);
+//   return `$${dollars}`;
+// };
 
-export function CollectButton({
-  price,
-  onCollect,
-  onError,
-}: CollectButtonProps) {
+export function CollectButton({ onCollect, onError }: CollectButtonProps) {
   const { isConnected, address } = useAccount();
   const { connect } = useConnect();
   const { sendTransactionAsync, isPending: isSending } = useSendTransaction();
@@ -73,7 +69,7 @@ export function CollectButton({
         to: tx.to,
         value: BigInt(tx.value),
         data: tx.data,
-        chainId: 8453
+        chainId: 8453,
       });
 
       setHash(hash);
@@ -94,9 +90,10 @@ export function CollectButton({
     <div className="sticky bottom-0 left-0 right-0 pb-[env(safe-area-inset-bottom)] bg-card border-t border-border">
       <div className="pb-4 px-4 pt-2">
         <div className="flex justify-between items-center mb-1 text-sm">
-          <span className="text-muted text-sm">Cost</span>
+          <span className="text-muted text-sm">Price</span>
           <span className="text-foreground font-medium">
-            {formatUsdPrice(price)}
+            {/* {formatUsdPrice(price)} */}
+            0.0025 ETH
           </span>
         </div>
         {isPending ? (

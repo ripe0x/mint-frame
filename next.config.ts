@@ -18,26 +18,22 @@ const nextConfig: NextConfig = {
         hostname: "wrpcd.net",
         pathname: "/cdn-cgi/**",
       },
-    ],
-  },
-  async headers() {
-    return [
       {
-        source: "/(.*)", // Apply to all routes
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: `
-              default-src 'self' https://cdn.ngrok.com 'unsafe-eval' 'unsafe-inline';
-              font-src 'self' https://assets.ngrok.com https://cdn.ngrok.com;
-              img-src 'self' data: https://img.reservoir.tools https://imagedelivery.net https://wrpcd.net;
-              script-src 'self' 'unsafe-eval' 'unsafe-inline';
-              style-src 'self' 'unsafe-inline';
-            `.replace(/\n/g, ""), // Ensure CSP is a single-line string
-          },
-        ],
+        protocol: "https",
+        hostname: "res.cloudinary.com", // Add this line
+        pathname: "/**", // Match all paths under this hostname
       },
-    ];
+      {
+        protocol: "https",
+        hostname: "f8n-production.imgix.net", // Add this line
+        pathname: "/**", // Match all paths under this hostname
+      },
+      {
+        protocol: "https",
+        hostname: "d3fd-2600-1700-6031-7010-bc06-7ede-80f8-fca8.ngrok-free.app", // Add this line
+        pathname: "/**", // Match all paths under this hostname
+      },
+    ],
   },
 };
 
