@@ -14,6 +14,9 @@ export function ArtworkInfo({ name, creator, description }: ArtworkInfoProps) {
   const handleUsernameClick = () => {
     sdk.actions.openUrl(`https://warpcast.com/${creator.username}`);
   };
+  const handleLinkClick = () => {
+    sdk.actions.openUrl(`https://higherself.wtf`);
+  };
 
   return (
     <div className="flex flex-col flex-grow p-4">
@@ -54,7 +57,15 @@ export function ArtworkInfo({ name, creator, description }: ArtworkInfoProps) {
         </div>
       </div>
 
-      <p className="text-sm mb-4">{description}</p>
+      <p className="text-sm mb-4">
+        {description}.{" "}
+        <span
+          className="text-sm text-action-foreground hover:underline cursor-pointer"
+          onClick={handleUsernameClick}
+        >
+          Learn more
+        </span>
+      </p>
     </div>
   );
 }

@@ -102,12 +102,12 @@ export function CollectButton({ onCollect, onError }: CollectButtonProps) {
               className="w-full relative bg-active text-active-foreground"
               disabled
             >
-              Collecting...
+              Minting...
             </Button>
           </AnimatedBorder>
         ) : (
           <Button className="w-full" onClick={handleClick}>
-            {isConnected ? "Collect" : "Connect"}
+            {isConnected ? "Mint" : "Connect"}
           </Button>
         )}
       </div>
